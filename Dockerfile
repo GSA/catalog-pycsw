@@ -46,7 +46,6 @@ ADD files/pycsw_config.sh /usr/local/bin
 ADD files/entrypoint.sh /entrypoint.sh
 
 RUN chmod +x /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]
 
 EXPOSE 80
 
