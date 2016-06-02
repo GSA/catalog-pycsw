@@ -30,7 +30,7 @@ RUN mkdir -p $PYCSW_CONFIG $PYCSW_HOME/src
 
 WORKDIR $PYCSW_HOME/src
 
-RUN git clone -b $PYCSW_VERSION https://github.com/GSA/pycsw
+RUN git clone -b $PYCSW_VERSION https://github.com/GSA/pycsw #1
 RUN cd pycsw && \
     ../../bin/python setup.py build && \
     ../../bin/python setup.py install && \
