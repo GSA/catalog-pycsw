@@ -23,6 +23,10 @@ elif [ "$1" = 'load-pycsw' ]; then
 
     /usr/lib/pycsw/bin/pycsw-db-admin.py vacuumdb /etc/pycsw/pycsw-all.cfg
 
+elif [ "$1" = 'set_keywords' ]; then
+
+    /usr/lib/pycsw/bin/pycsw-ckan.py -c set_keywords -f /etc/pycsw/pycsw-all.cfg
+
 elif [ "$1" = 'reindex-fts' ]; then
 
     /usr/lib/pycsw/bin/pycsw-db-admin.py reindex_fts /etc/pycsw/pycsw-all.cfg
