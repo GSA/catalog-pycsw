@@ -1,24 +1,22 @@
 FROM ubuntu:14.04
 
-RUN apt-get update && upgrade \
-
-RUN apt-get install -y \
-      ruby \
-      python-virtualenv \
-      python-setuptools \
-      git \
-      python-dev \
-      ruby-dev \
-      postgresql-client \
-      bison \
-      apache2 \
-      libapache2-mod-wsgi \
-      python-pip \
-      python-psycopg2 \
-      libgeos-c1 \
-      libxml2-dev \
-      libxslt1-dev \
-      lib32z1-dev
+RUN apt-get -q -y update && apt-get -q -y install \
+    ruby \
+    python-virtualenv \
+    python-setuptools \
+    git \
+    python-dev \
+    ruby-dev \
+    postgresql-client \
+    bison \
+    apache2 \
+    libapache2-mod-wsgi \
+    python-pip \
+    python-psycopg2 \
+    libgeos-c1 \
+    libxml2-dev \
+    libxslt1-dev \
+    lib32z1-dev
 
 ENV PYCSW_HOME /usr/lib/pycsw
 ENV PYCSW_CONFIG /etc/pycsw
