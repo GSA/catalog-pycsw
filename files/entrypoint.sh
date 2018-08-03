@@ -4,6 +4,16 @@
 # configure ini files
 /bin/sh /usr/local/bin/pycsw_config.sh
 
+#Define cleanup procedure
+cleanup() {
+    echo "Container stopped, performing cleanup..."
+    killall apache2
+    rm /var/run/apache2/apache2.pid
+}
+
+#Trap SIGTERM
+trap 'cleanup' SIGTERM
+
 if [ "$1" = 'start-pycsw' ]; then
 
   # wait for all services to start-up
@@ -15,7 +25,13 @@ if [ "$1" = 'start-pycsw' ]; then
   /usr/lib/pycsw/bin/pycsw-ckan.py -c setup_db -f /etc/pycsw/pycsw-all.cfg
 
   # start apache2
-  /bin/bash -c "source /etc/apache2/envvars && exec /usr/sbin/apache2 -DFOREGROUND"
+  /bin/bash -c "source /etc/apache2/envvars && exec /usr/sbin/apache2 -DFOREGROUND" &
+
+  # Wait for SIGTERM
+  wait $!
+
+  # Do cleanup
+  cleanup
 
 elif [ "$1" = 'load-pycsw' ]; then
 
